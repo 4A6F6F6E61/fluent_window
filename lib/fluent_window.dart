@@ -6,10 +6,11 @@ import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:fluent_window/window_title_bar.dart';
 
 class FluentWindow extends StatelessWidget {
-  const FluentWindow({super.key, required this.child, required this.menuBar});
+  const FluentWindow({super.key, this.title, this.menuBar, required this.child});
 
   final Widget child;
   final Widget? menuBar;
+  final String? title;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class FluentWindow extends StatelessWidget {
       );
       return Column(
         children: [
-          WindowTitleBar(menuBar: menuBar),
+          WindowTitleBar(title: title, menuBar: menuBar),
           Expanded(child: child),
         ],
       );
