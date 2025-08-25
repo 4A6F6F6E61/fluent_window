@@ -14,6 +14,10 @@ class FluentWindow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid || Platform.isIOS) {
+      return child;
+    }
+
     // TODO: Add a check to make sure this only gets called once
     if (Platform.isMacOS) {
       dev.log(
