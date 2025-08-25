@@ -14,11 +14,14 @@ First, setup [Bitsdojo Window](https://pub.dev/packages/bitsdojo_window), then j
 ## Usage
 
 ```dart
+import 'dart:io';
+
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   // This comes from Flutter Acrylic
   await Window.initialize();
 
@@ -56,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         // Important if you want to use a Scaffold and have Flutter Acrylic's effects
         scaffoldBackgroundColor: Colors.transparent, 
-      );
+      ),
       home: FluentWindow(
         title: // Optional, the title of you App if you want to show one.
                // It will appear on the far left next to the MenuBar

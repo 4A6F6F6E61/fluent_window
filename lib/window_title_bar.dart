@@ -10,13 +10,14 @@ class WindowTitleBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = appWindow.titleBarButtonSize.height;
     return Card(
       padding: EdgeInsetsGeometry.all(0),
       borderColor: Colors.transparent,
       borderRadius: BorderRadiusGeometry.circular(0),
       child: SizedBox(
         width: double.infinity,
-        height: appWindow.titleBarButtonSize.height + 10,
+        height: menuBar == null ? height : height + 10,
         child: MoveWindow(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
