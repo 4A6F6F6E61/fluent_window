@@ -5,12 +5,31 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:fluent_window/window_title_bar.dart';
 
+// TODO: Add a stack varient which is rendered on top of the window instead of taking vertical space
 class FluentWindow extends StatelessWidget {
-  const FluentWindow({super.key, this.title, this.menuBar, required this.child});
+  const FluentWindow({
+    super.key,
+    this.title,
+    this.menuBar,
+    required this.child,
+    this.windowsEffect = WindowEffect.mica,
+    this.macOSEffect = WindowEffect.sidebar,
+    this.linuxEffect = WindowEffect.transparent,
+    this.windowsEffectColor = const Color(0xCC222222),
+    this.macOSEffectColor = Colors.transparent,
+    this.linuxEffectColor = Colors.transparent,
+  });
 
   final Widget child;
   final Widget? menuBar;
   final String? title;
+
+  final WindowEffect windowsEffect;
+  final WindowEffect macOSEffect;
+  final WindowEffect linuxEffect;
+  final Color windowsEffectColor;
+  final Color macOSEffectColor;
+  final Color linuxEffectColor;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +44,8 @@ class FluentWindow extends StatelessWidget {
         name: "fluent_window",
       );
       Window.setEffect(
-        effect: WindowEffect.sidebar,
+        effect: macOSEffect,
+        color: macOSEffectColor,
         dark: FluentTheme.of(context).brightness == Brightness.dark,
       );
       return Column(
@@ -37,8 +57,8 @@ class FluentWindow extends StatelessWidget {
     }
     if (Platform.isWindows) {
       Window.setEffect(
-        effect: WindowEffect.mica,
-        // color: Color(0xCC222222),
+        effect: windowsEffect,
+        color: windowsEffectColor,
         dark: FluentTheme.of(context).brightness == Brightness.dark,
       );
 
@@ -50,14 +70,14 @@ class FluentWindow extends StatelessWidget {
       );
     }
     Window.setEffect(
-      effect: WindowEffect.transparent,
-      color: Colors.transparent,
+      effect: linuxEffect,
+      color: linuxEffectColor,
       dark: FluentTheme.of(context).brightness == Brightness.dark,
     );
     // Fake Acrylic effect for development because it doesn't work under Linux
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage("assets/background_red.png"), fit: BoxFit.cover),
+        image: DecorationImage(image: AssetImage("assets/background.png"), fit: BoxFit.cover),
       ),
       child: Acrylic(
         tint: Color(0xCC222222),
