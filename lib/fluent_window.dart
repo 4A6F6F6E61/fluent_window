@@ -20,6 +20,8 @@ class FluentWindow extends StatelessWidget {
     this.linuxEffectColor = Colors.transparent,
   });
 
+  static bool _initialRender = true;
+
   final Widget child;
   final Widget? menuBar;
   final String? title;
@@ -43,11 +45,14 @@ class FluentWindow extends StatelessWidget {
         "Warning: macOS is not officially supported yet, use at your own risk.",
         name: "fluent_window",
       );
-      Window.setEffect(
-        effect: macOSEffect,
-        color: macOSEffectColor,
-        dark: FluentTheme.of(context).brightness == Brightness.dark,
-      );
+      if (_initialRender) {
+        Window.setEffect(
+          effect: macOSEffect,
+          color: macOSEffectColor,
+          dark: FluentTheme.of(context).brightness == Brightness.dark,
+        );
+        _initialRender = false;
+      }
       return Column(
         children: [
           WindowTitleBar(title: title, menuBar: menuBar),
@@ -56,11 +61,14 @@ class FluentWindow extends StatelessWidget {
       );
     }
     if (Platform.isWindows) {
-      Window.setEffect(
-        effect: windowsEffect,
-        color: windowsEffectColor,
-        dark: FluentTheme.of(context).brightness == Brightness.dark,
-      );
+      if (_initialRender) {
+        Window.setEffect(
+          effect: windowsEffect,
+          color: windowsEffectColor,
+          dark: FluentTheme.of(context).brightness == Brightness.dark,
+        );
+        _initialRender = false;
+      }
 
       return Column(
         children: [
@@ -69,11 +77,14 @@ class FluentWindow extends StatelessWidget {
         ],
       );
     }
-    Window.setEffect(
-      effect: linuxEffect,
-      color: linuxEffectColor,
-      dark: FluentTheme.of(context).brightness == Brightness.dark,
-    );
+    if (_initialRender) {
+      Window.setEffect(
+        effect: linuxEffect,
+        color: linuxEffectColor,
+        dark: FluentTheme.of(context).brightness == Brightness.dark,
+      );
+      _initialRender = false;
+    }
     // Fake Acrylic effect for development because it doesn't work under Linux
     return Container(
       decoration: BoxDecoration(
