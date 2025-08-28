@@ -20,9 +20,16 @@ class WindowTitleBar extends StatelessWidget {
         height: menuBar == null ? height : height + 10,
         child: MoveWindow(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              title != null ? Row(children: [SizedBox(width: 8), Text(title!)]) : SizedBox(),
+              title != null
+                  ? Row(
+                      children: [
+                        SizedBox(width: 8),
+                        Text(title!, style: TextStyle(fontSize: 16)),
+                      ],
+                    )
+                  : SizedBox(),
               Expanded(child: menuBar != null ? menuBar! : SizedBox()),
               WindowButtons(),
             ],
