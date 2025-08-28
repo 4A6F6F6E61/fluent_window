@@ -72,7 +72,7 @@ class FluentWindow extends StatelessWidget {
 
       return Column(
         children: [
-          WindowTitleBar(menuBar: menuBar),
+          WindowTitleBar(title: title, menuBar: menuBar),
           Expanded(child: child),
         ],
       );
