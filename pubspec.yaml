@@ -1,6 +1,6 @@
 name: fluent_window
 description: "Custom Window for fluent_ui."
-version: 0.1.6
+version: 0.1.7
 homepage: https://github.com/4A6F6F6E61/fluent_window.git
 
 environment:

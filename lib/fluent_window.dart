@@ -95,7 +95,7 @@ class FluentWindow extends StatelessWidget {
         blurAmount: 20,
         child: Column(
           children: [
-            WindowTitleBar(menuBar: menuBar),
+            WindowTitleBar(title: title, menuBar: menuBar),
             Expanded(child: child),
           ],
         ),
