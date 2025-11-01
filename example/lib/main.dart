@@ -20,7 +20,7 @@ Future<void> main() async {
     // This comes from Bitsdojo Window
     doWhenWindowReady(() {
       appWindow
-        ..minSize = Size(640, 360)
+        ..minSize = Size(200, 360)
         ..size = Size(1300, 800)
         ..alignment = Alignment.center
         ..show();
@@ -40,6 +40,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return FluentApp(
       title: 'Example App',
+
       theme: FluentThemeData(
         brightness: Brightness.dark,
         // Important if you want to use a Scaffold and have Flutter Acrylic's effects
@@ -48,6 +49,8 @@ class _MyAppState extends State<MyApp> {
       home: FluentWindow(
         title: "Example App",
         menuBar: null,
+        windowsEffect: WindowEffect.acrylic,
+        windowsEffectColor: const Color(0xAF000000),
         child: Center(child: Text("Example App")),
       ),
     );
